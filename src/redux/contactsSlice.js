@@ -1,34 +1,33 @@
-import { nanoid } from 'nanoid';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = [];
+const contactsSlice = createSlice({
+  name: 'contacts',
+  initialState,
+});
 
-export const addContact = ({ name, number }) => {
-  return {
-    type: 'contacts/add',
-    payload: {
-      id: nanoid(),
-      name,
-      number,
-    },
-  };
-};
+// import { createAction, createReducer, nanoid } from '@reduxjs/toolkit';
 
-export const delContact = id => {
-  return {
-    type: 'contacts/del',
-    payload: id,
-  };
-};
+// const initialState = [];
 
-export const contactsReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'contacts/add':
-      return [...state, action.payload];
+// export const addContact = createAction('contacts/add', ({ name, number }) => {
+//   return {
+//     payload: {
+//       id: nanoid(),
+//       name,
+//       number,
+//     },
+//   };
+// });
 
-    case 'contacts/del':
-      return state.filter(contact => contact.id !== action.payload);
+// export const delContact = createAction('contacts/del');
 
-    default:
-      return state;
-  }
-};
+// export const contactsReducer = createReducer(initialState, builder => {
+//   builder
+//     .addCase(addContact, (state, action) => {
+//       state.push(action.payload);
+//     })
+//     .addCase(delContact, (state, action) => {
+//       const index = state.findIndex(contact => contact.id === action.payload);
+//       state.splice(index, 1);
+//     });
+// });

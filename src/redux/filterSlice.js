@@ -1,18 +1,11 @@
+import { createAction, createReducer } from '@reduxjs/toolkit';
+
 const initialState = '';
 
-export const changeFilter = name => {
-  return {
-    type: 'filter/changeFilter',
-    payload: name,
-  };
-};
+export const changeFilter = createAction('filter/changeFilter');
 
-export const filterReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case 'filter/changeFilter': {
-      return action.payload;
-    }
-    default:
-      return state;
-  }
-};
+export const filterReducer = createReducer(initialState, builder => {
+  builder.addCase(changeFilter, (state, action) => {
+    return action.payload;
+  });
+});
