@@ -2,8 +2,21 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const contactsSlice = createSlice({
   name: 'contacts',
-  initialState,
+  initialState: [],
+  reducers: {
+    addContact(state, action) {
+      state.push(action.payload);
+    },
+    delContact(state, action) {
+      const idx = state.findIndex(contact => contact.id === action.payload);
+      state.splice(idx, 1);
+    },
+  },
 });
+
+export const contactsReducer = contactsSlice.reducer;
+
+export const { addContact, delContact } = contactsSlice.actions;
 
 // import { createAction, createReducer, nanoid } from '@reduxjs/toolkit';
 
@@ -27,7 +40,7 @@ const contactsSlice = createSlice({
 //       state.push(action.payload);
 //     })
 //     .addCase(delContact, (state, action) => {
-//       const index = state.findIndex(contact => contact.id === action.payload);
-//       state.splice(index, 1);
+//       const idx = state.findIndex(contact => contact.id === action.payload);
+//       state.splice(idx, 1);
 //     });
 // });
