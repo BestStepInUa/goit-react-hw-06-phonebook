@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import toast from 'react-hot-toast';
-import { addContact } from '../../redux/contactsSlice';
+import { addContact, getContacts } from '../../redux/contactsSlice';
 import AddContactFormStyled from './Addcontactform.styled.';
 
 const INITIAL_STATE = {
@@ -10,7 +10,7 @@ const INITIAL_STATE = {
 };
 
 const AddContactForm = () => {
-  const contacts = useSelector(state => state.contacts);
+  const contacts = useSelector(getContacts);
   const [state, setState] = useState(INITIAL_STATE);
   const dispatch = useDispatch();
 
